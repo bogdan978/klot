@@ -1,0 +1,20 @@
+import requests
+
+# Получите API ключ на сайте OpenExchangeRates и вставьте его здесь
+api_key = 'your_api_key_here'
+
+# Задайте исходные параметры конвертации
+base_currency = 'USD'
+target_currency = 'EUR'
+amount = 100.0
+
+# Отправьте запрос на API сервиса
+response = requests.get(f'https://openexchangerates.org/api/latest.json?app_id={api_key}&base={base_currency}')
+data = response.json()
+
+# Получите курс валют и выполните конвертацию
+exchange_rate = data['rates'][target_currency]
+converted_amount = amount * exchange_rate
+
+# Выведите результат конвертации
+print(f'{amount} {base_currency} = {converted_amount} {target_currency}')
